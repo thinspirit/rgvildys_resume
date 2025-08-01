@@ -1,144 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robert Gvildys - Resume</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-        }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 20px;
-            display: flex;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .left-column {
-            width: 30%;
-            background: #222;
-            color: white;
-            padding: 20px;
-        }
-        .right-column {
-            width: 70%;
-            padding: 20px;
-        }
-        h1, h2 {
-            color: #222;
-        }
-        .section-title {
-            border-bottom: 2px solid #222;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .job-title {
-            font-weight: bold;
-            color: #444;
-        }
-        .date {
-            font-style: italic;
-            color: #777;
-        }
-        .contact-info, .skills, .certifications {
-            margin-bottom: 20px;
-        }
-        ul {
-            padding: 0;
-            list-style: none;
-        }
-        ul li {
-            margin-bottom: 5px;
-        }
-        .left-column ul li {
-            color: #ddd;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robert Gvildys – Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0052cc;
+      --secondary: #edf2f7;
+      --accent: #00b5ad;
+      --text: #2d3748;
+      --card-bg: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .contact {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+    .contact a { color: var(--accent); text-decoration: none; }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 15px;
+      border-left: 5px solid var(--primary);
+      padding-left: 10px;
+      color: var(--primary);
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px var(--shadow);
+      margin-bottom: 20px;
+    }
+    /* Two-column grid for skills */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    ul {
+      list-style: disc inside;
+      margin-top: 10px;
+    }
+    .job {
+      margin-bottom: 20px;
+    }
+    .job-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+    .job-meta {
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      color: #718096;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .section h2 { font-size: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>Robert Gvildys</h1>
+      <div class="contact">
+        <span>London, ON</span>
+        <span>📞 647-829-7504</span>
+        <span>✉️ <a href="mailto:rgvildys@gmail.com">rgvildys@gmail.com</a></span>
+        <span>🔗 <a href="https://www.linkedin.com/in/rob-gvildys-7148b522/" target="_blank">LinkedIn</a></span>
+      </div>
+    </header>
 
-    <div class="container">
-        <!-- Left Sidebar -->
-        <div class="left-column">
-            <h1>Robert Gvildys</h1>
-            <p>Project Manager | IT & Communications</p>
-            
-            <div class="contact-info">
-                <h2 class="section-title">Contact</h2>
-                <ul>
-                    <li>📧 rgvildys@gmail.com</li>
-                    <li>📍 London, ON</li>
-                    <li>📞 647-829-7504</li>
-                    <li>🔗 <a href="https://www.linkedin.com/in/robert-gvildys-7148b522/" style="color: #ddd;">LinkedIn</a></li>
-                </ul>
-            </div>
+    <section class="section">
+      <h2>Professional Summary</h2>
+      <div class="card">
+        <p>Certified IT Technician with 8 years of hands-on experience delivering technical support, managing system configurations, and leading small-scale IT projects in mid-sized environments. Skilled in end-user support, hardware procurement and upgrades, Windows Group Policy administration, and remote endpoint management. CompTIA A+ certified, with growing experience in systems design and infrastructure planning, and actively working toward a junior systems design or administrator role.</p>
+      </div>
+    </section>
 
-            <div class="skills">
-                <h2 class="section-title">Key Skills</h2>
-                <ul>
-                    <li>SQL & Database Management</li>
-                    <li>Data Migration & Optimization</li>
-                    <li>IT Systems & Network Configuration</li>
-                    <li>Web Development (HTML, CSS, JS)</li>
-                    <li>Software Tools Development (Python, VB)</li>
-                    <li>Creative Problem Solving</li>
-                    <li>Technical & Stakeholder Communication</li>
-                </ul>
-            </div>
+    <section class="section">
+      <h2>Skills</h2>
+      <div class="card grid-2">
+        <div>
+          <h3>Operating Systems</h3>
+          <ul>
+            <li>Windows 7/8/10/11</li>
+            <li>Windows Server 2016/2019/2022</li>
+            <li>Linux (intermediate)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>System Admin & Tools</h3>
+          <ul>
+            <li>Active Directory & GPO</li>
+            <li>Remote Desktop & RMM (Kaseya, Datto)</li>
+            <li>System Imaging & Deployment</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Hardware & Networking</h3>
+          <ul>
+            <li>PC Assembly & Repair</li>
+            <li>Printer Support</li>
+            <li>Network Troubleshooting & Cabling</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Software & Platforms</h3>
+          <ul>
+            <li>Microsoft 365, SharePoint, OneDrive</li>
+            <li>Exchange Admin Center, Teams, Zoom</li>
+            <li>AutoCAD, Visio, Adobe Suite</li>
+            <li>SaaS Config & Rollout, AI Tools</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Scripting & Automation</h3>
+          <ul>
+            <li>Batch Scripting</li>
+            <li>PowerShell</li>
+            <li>Python (intermediate)</li>
+            <li>Visual Basic & SQL (intermediate)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Documentation & Process</h3>
+          <ul>
+            <li>SOPs & Inventory</li>
+            <li>Rollback Plans & Asset Tracking</li>
+            <li>Ticketing (Jira, Spiceworks)</li>
+            <li>Security Policies & Training</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-            <div class="certifications">
-                <h2 class="section-title">Certifications</h2>
-                <ul>
-                    <li>Introduction to Project Management (Google, 2024)</li>
-                    <li>OACFP Cemetery Administration (2023)</li>
-                    <li>Joint Health and Safety Committee (2022)</li>
-                    <li>First-Aid & CPR/AED (2024)</li>
-                </ul>
-            </div>
+    <section class="section">
+      <h2>Certifications</h2>
+      <div class="card">
+        <ul>
+          <li>CompTIA A+ Certified</li>
+          <li>CompTIA Network+ (in progress)</li>
+          <li>CompTIA Security+ (in progress)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Professional Experience</h2>
+
+      <div class="card">
+        <div class="job">
+          <div class="job-title">Director of Communications</div>
+          <div class="job-meta">Woodland Cemetery, Mausoleum, and Crematorium — London, ON | Mar 2024–Apr 2025</div>
+          <ul>
+            <li>Acted as primary IT lead, managing systems and vendor escalations</li>
+            <li>Led $150K ERP migration to cloud-based PlotBox</li>
+            <li>Designed file infrastructure and communication workflows</li>
+            <li>Delivered organization-wide software training</li>
+            <li>Administered Windows endpoints, GPO, user accounts, Microsoft 365</li>
+          </ul>
         </div>
 
-        <!-- Right Main Content -->
-        <div class="right-column">
-            <h2 class="section-title">Professional Summary</h2>
-            <p>Tech-savvy project leader with hands-on experience implementing **PlotBox** at Woodland Cemetery. Led **data migration, system integration, and process optimization** for 62,000+ grave records, ensuring accuracy and efficiency. Skilled in **SQL database management, CAD automation, and IT infrastructure**, with a knack for making complex systems work better for the people who use them. Passionate about **leveraging technology to streamline cemetery management**.</p>
-
-            <h2 class="section-title">Work Experience</h2>
-            
-            <p class="job-title">Director of Communications - Woodland Cemetery, London, ON <span class="date">(2024 – Present)</span></p>
-            <ul>
-                <li>Project lead for the $152,000 **PlotBox** transition, overseeing data migration and workflow integration.</li>
-                <li>Developed CAD automation tools that reduced drawing time by **40%**.</li>
-                <li>Coordinated between internal teams and software providers for smooth adoption.</li>
-                <li>Designed a new website projected to increase inquiries by **20%**.</li>
-            </ul>
-
-            <p class="job-title">Office & Communications Coordinator - Woodland Cemetery, London, ON <span class="date">(2021 – 2024)</span></p>
-            <ul>
-                <li>Redesigned all internal forms and contracts to meet BAO regulations.</li>
-                <li>Led IT infrastructure improvements, including **server upgrades** and network restructuring.</li>
-                <li>Implemented **MediaWiki** for internal documentation, improving efficiency.</li>
-                <li>Maintained over **45 devices** across the organization.</li>
-            </ul>
-
-            <p class="job-title">Web/Graphic Designer - Synergy Networx, Toronto, ON <span class="date">(2012)</span></p>
-            <ul>
-                <li>Designed a mobile site for **Dark Horse Espresso**.</li>
-                <li>Developed the **Novo Nordisk Canada intranet**, improving internal communications.</li>
-            </ul>
-
-            <h2 class="section-title">Education</h2>
-            <p class="job-title">Bachelors of Fine Arts (Honours) - York University <span class="date">(2015 – 2021)</span></p>
-            <p class="job-title">Certificate in Film Studies - Toronto Metropolitan University <span class="date">(2005 – 2006)</span></p>
+        <div class="job">
+          <div class="job-title">Office & Communications Coordinator</div>
+          <div class="job-meta">Woodland Cemetery, Mausoleum, and Crematorium — London, ON | Sep 2021–Mar 2024</div>
+          <ul>
+            <li>Sole IT technician for 30+ staff; daily support & provisioning</li>
+            <li>Implemented ESXi hypervisor with Windows Server VMs</li>
+            <li>Configured intranet, DNS routing, AD/GPO, RMM tools</li>
+            <li>Built file vault & Linux-based MediaWiki Wiki</li>
+            <li>Administered AVAYA VoIP and rewired office network</li>
+          </ul>
         </div>
-    </div>
 
+        <div class="job">
+          <div class="job-title">Junior Designer / IT Support Technician</div>
+          <div class="job-meta">MindsCombined Media Inc. — Markham, ON | 2005–2009</div>
+          <ul>
+            <li>Provided IT support alongside design duties</li>
+            <li>Managed user accounts & local network administration</li>
+            <li>Provisioned servers for storage, backup, web & email</li>
+            <li>Administered email, DNS, domain configurations</li>
+            <li>Delivered on-site & remote software support</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Projects</h2>
+      <div class="card">
+        <div class="job">
+          <div class="job-title">PlotBox ERP Implementation – Internal Systems Lead</div>
+          <div class="job-meta">Woodland Cemetery | 2021–2025</div>
+          <ul>
+            <li>Standardized 40+ forms for digital integration with PlotBox</li>
+            <li>Automated CAD mapping of 62,000+ grave plots via AutoLISP</li>
+            <li>Designed data controls & naming conventions</li>
+            <li>Created training & wiki documentation</li>
+            <li>Led UAT coordination & cross-department alignment</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Education</h2>
+      <div class="card">
+        <ul>
+          <li><strong>BFA, Visual Arts</strong> — York University, Toronto, ON | 2021</li>
+          <li><strong>Certificate in Film Studies</strong> — Toronto Metropolitan University | 2004–2006</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Professional Development</h2>
+      <div class="card">
+        <ul>
+          <li>Google: Intro to Project Management (Coursera), 2024</li>
+          <li>JHSC Certification (Ontario MOL), 2022</li>
+          <li>First Aid with CPR/AED – St. John Ambulance, 2024</li>
+        </ul>
+      </div>
+    </section>
+  </div>
 </body>
 </html>

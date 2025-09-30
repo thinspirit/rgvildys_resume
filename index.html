@@ -1,252 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robert Gvildys – Resume</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robert Gvildys — Portfolio</title>
+  <meta name="description" content="Portfolio of Robert Gvildys. IT, systems, data, and product projects." />
   <style>
-    :root {
-      --primary: #2c3e50;
-      --secondary: #ecf0f1;
-      --accent: #16a085;
-      --text: #2c3e50;
-      --card-bg: #ffffff;
-      --shadow: rgba(0, 0, 0, 0.04);
+    /* ===== CSS RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--text); background: var(--bg); }
+
+    /* ===== THEME ===== */
+    :root{
+      --bg: #0b0f14; /* deep slate */
+      --text: #e8f0ff; /* soft white */
+      --muted: #b2c1da;
+      --brand: #7adcff;
+      --accent: #9b8cff;
+      --card: rgba(255,255,255,.07);
+      --stroke: rgba(255,255,255,.12);
+      --glow: 0 0 40px rgba(122,220,255,.25), 0 0 80px rgba(155,140,255,.15);
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--secondary);
-      color: var(--text);
-      line-height: 1.6;
-      padding: 20px;
+    @media (prefers-color-scheme: light) {
+      :root{
+        --bg: #f7f9fc;
+        --text: #0f1520;
+        --muted: #3a4a61;
+        --brand: #007fff;
+        --accent: #7a5cff;
+        --card: rgba(255,255,255,.8);
+        --stroke: rgba(15,21,32,.08);
+        --glow: 0 0 30px rgba(0,127,255,.2), 0 0 60px rgba(122,92,255,.15);
+      }
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
+
+    /* ===== LAYOUT ===== */
+    .container{ width: min(1100px, 92%); margin: 0 auto; }
+    header.site{
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(120%) blur(10px);
+      background: color-mix(in hsl, var(--bg) 85%, transparent);
+      border-bottom: 1px solid var(--stroke);
     }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
+    .site .bar{ display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+    .logo{ font-weight: 800; letter-spacing: .3px; }
+    nav a{ color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 10px; }
+    nav a:hover, nav a:focus{ color: var(--text); background: var(--card); }
+
+    main{ scroll-snap-type: y proximity; }
+    section{ scroll-snap-align: start; position: relative; padding: 96px 0; }
+
+    /* ===== BACKGROUND ANIMATION (GPU friendly) ===== */
+    .bg{
+      position: fixed; inset: -40vmax; z-index: -1; filter: blur(60px) saturate(120%);
+      background: conic-gradient(from 0deg at 50% 50%, var(--brand), transparent 18%, var(--accent), transparent 36%, var(--brand), transparent 54%, var(--accent), transparent 72%, var(--brand), transparent 90%, var(--accent));
+      animation: spin 30s linear infinite;
+      opacity: .35; pointer-events: none;
     }
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 8px;
+    @keyframes spin { to { transform: rotate(1turn) } }
+
+    /* ===== CARDS / GLASS ===== */
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 18px; padding: 22px 22px;
+      box-shadow: var(--glow);
     }
-    .contact {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 0.9rem;
-      color: #7f8c8d;
+
+    /* ===== HERO ===== */
+    .hero{ display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: center; }
+    .hero h1{ font-size: clamp(36px, 4.8vw, 64px); line-height: 1.1; margin: 0 0 12px; letter-spacing: .2px; }
+    .hero p.lead{ font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); margin: 0 0 22px; }
+    .tags{ display: flex; flex-wrap: wrap; gap: 10px; }
+    .tag{ padding: 8px 12px; border: 1px solid var(--stroke); border-radius: 999px; background: color-mix(in srgb, var(--card) 70%, transparent); font-size: 14px; }
+
+    /* Avatar circle with subtle float */
+    .avatar{
+      inline-size: 100%; aspect-ratio: 1/1; border-radius: 50%;
+      background:
+        radial-gradient(60% 60% at 30% 30%, color-mix(in srgb, var(--brand) 60%, transparent), transparent 70%),
+        radial-gradient(50% 50% at 70% 70%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 70%),
+        linear-gradient(135deg, color-mix(in srgb, var(--brand) 20%, transparent), color-mix(in srgb, var(--accent) 20%, transparent));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--glow);
+      animation: float 6s ease-in-out infinite alternate;
     }
-    .contact a { color: var(--accent); text-decoration: none; }
-    .contact a:hover { text-decoration: underline; }
-    .section {
-      margin-bottom: 30px;
-    }
-    .section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 12px;
-      border-left: 4px solid var(--accent);
-      padding-left: 8px;
-      color: var(--primary);
-    }
-    .card {
-      background: var(--card-bg);
-      padding: 16px;
-      border-radius: 6px;
-      box-shadow: 0 3px 6px var(--shadow);
-      margin-bottom: 20px;
-    }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-    ul {
-      list-style: disc inside;
-      margin-top: 6px;
-    }
-    .cert-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .cert-grid li {
-      flex: 1 1 150px;
-    }
-    .job {
-      margin-bottom: 20px;
-    }
-    .job-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-    .job-meta {
-      font-style: italic;
-      font-size: 0.9rem;
-      color: #95a5a6;
-      margin-bottom: 8px;
-    }
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      .section h2 { font-size: 1.3rem; }
+    @keyframes float { to { transform: translateY(-8px) } }
+
+    .cta{ display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn{ text-decoration: none; padding: 12px 16px; border-radius: 12px; font-weight: 600; border: 1px solid var(--stroke); }
+    .btn.primary{ background: linear-gradient(135deg, var(--brand), var(--accent)); color: #fff; border: none; box-shadow: var(--glow); }
+    .btn.ghost{ color: var(--text); background: var(--card); }
+
+    /* ===== GRID UTIL ===== */
+    .grid{ display: grid; gap: 18px; }
+    .grid.cols-3{ grid-template-columns: repeat(3, 1fr); }
+    .grid.cols-2{ grid-template-columns: repeat(2, 1fr); }
+    @container (max-width: 800px){}
+    @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } .grid.cols-3{ grid-template-columns: 1fr; } .grid.cols-2{ grid-template-columns: 1fr; } }
+
+    /* ===== TIMELINE ===== */
+    .timeline{ position: relative; padding-left: 24px; }
+    .timeline::before{ content:""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--accent), var(--brand)); opacity: .5; }
+    .t-item{ position: relative; padding: 12px 0 12px 12px; }
+    .t-item::before{ content:""; position: absolute; left: -2px; top: 18px; width: 10px; height: 10px; background: radial-gradient(#fff, var(--accent)); border-radius: 50%; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
+    .t-role{ font-weight: 700; }
+    .t-org{ color: var(--muted); font-size: .95rem; }
+
+    /* ===== REVEAL ANIMATIONS ===== */
+    .reveal{ opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in{ opacity: 1; transform: translateY(0); }
+
+    /* ===== FOOTER ===== */
+    footer{ padding: 60px 0; border-top: 1px solid var(--stroke); color: var(--muted); }
+
+    /* Accessibility: reduce heavy motion */
+    @media (prefers-reduced-motion: reduce){
+      .bg{ animation: none; }
+      .avatar{ animation: none; }
+      .reveal{ transition: none; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Robert Gvildys</h1>
-      <div class="contact">
-        <span>London, ON</span>
-        <span>📞 647-829-7504</span>
-        <span>✉️ <a href="mailto:rgvildys@gmail.com">rgvildys@gmail.com</a></span>
-        <span>🔗 <a href="https://www.linkedin.com/in/rob-gvildys-7148b522/" target="_blank">LinkedIn</a></span>
-      </div>
-    </header>
+  <div class="bg" aria-hidden="true"></div>
+  <header class="site">
+    <div class="container bar">
+      <div class="logo">Robert Gvildys</div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="section">
-      <h2>Professional Summary</h2>
-      <div class="card">
-        <p>Certified IT Technician with 8 years of hands-on experience delivering technical support, managing system configurations, and leading small-scale IT projects in mid-sized environments. Skilled in end-user support, hardware procurement and upgrades, Windows Group Policy administration, and remote endpoint management. CompTIA A+ certified, with growing experience in systems design and infrastructure planning, and actively working toward a junior systems design or administrator role.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Skills</h2>
-      <div class="card grid-2">
+  <main>
+    <section id="hero" class="container">
+      <div class="hero">
         <div>
-          <h3>Systems & Tools</h3>
-          <ul>
-            <li><strong>OS:</strong> Windows 7/8/10/11, Server 2016–2022, Linux</li>
-            <li><strong>Admin:</strong> Active Directory, GPO, RMM (Kaseya, Datto)</li>
-            <li><strong>Imaging:</strong> System deployment & backup</li>
-          </ul>
+          <h1 class="reveal">IT, Systems, and Product Builder</h1>
+          <p class="lead reveal">I design and implement reliable systems, migrate data at scale, and build practical tools that make teams faster. London, Ontario.</p>
+          <div class="tags reveal" style="margin:18px 0 24px">
+            <span class="tag">Windows & Linux Admin</span>
+            <span class="tag">FastAPI + PostgreSQL</span>
+            <span class="tag">Data migration</span>
+            <span class="tag">CAD automation</span>
+            <span class="tag">Compliance workflows</span>
+          </div>
+          <div class="cta reveal">
+            <a class="btn primary" href="#contact">Get in touch</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/rob-gvildys-7148b522/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
         </div>
-        <div>
-          <h3>Hardware & Network</h3>
-          <ul>
-            <li>PC assembly, repair & printer support</li>
-            <li>Network troubleshooting & cabling</li>
-            <li>VoIP & switch configuration</li>
-          </ul>
+        <div class="reveal">
+          <div class="avatar" role="img" aria-label="Abstract portrait placeholder"></div>
         </div>
-        <div>
-          <h3>Software & Scripting</h3>
-          <ul>
-            <li>Microsoft 365, SharePoint, OneDrive</li>
-            <li>PowerShell & Batch scripting</li>
-            <li>Python & SQL (intermediate)</li>
-          </ul>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container grid cols-2">
+        <div class="card reveal">
+          <h2>About</h2>
+          <p>Technical generalist with 8+ years across IT operations, systems design, and data projects. I led a full ERP migration from a legacy SQL system to PlotBox, built CAD scripting that cut drawing time by 40 percent, and rolled out compliant digital forms across a regulated organization.</p>
+          <p>Currently building Mortemora, a fast and lean cemetery management stack using Python and PostgreSQL.</p>
         </div>
-        <div>
-          <h3>Documentation & Process</h3>
+        <div class="card reveal">
+          <h3 style="margin-top:0">Highlights</h3>
           <ul>
-            <li>SOPs, inventory & asset tracking</li>
-            <li>Ticketing (Jira, Spiceworks)</li>
-            <li>Security policies & training</li>
+            <li>ERP migration lead, $152K scope, 62K+ records cleaned</li>
+            <li>Designed internal wiki, GPO/AD structure, and IT processes</li>
+            <li>Data acceptance testing, training, and change enablement</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Certifications</h2>
-      <div class="card">
-        <ul class="cert-grid">
-          <li>CompTIA A+ Certified</li>
-          <li>CompTIA Network+ (in progress)</li>
-          <li>CompTIA Security+ (in progress)</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Professional Experience</h2>
-      <div class="card">
-        <div class="job">
-          <div class="job-title">Director of Communications</div>
-          <div class="job-meta">Woodland Cemetery, Mausoleum, and Crematorium — London, ON | Mar 2024–Apr 2025</div>
-          <ul>
-            <li>Acted as primary IT lead, managing systems and vendor escalations</li>
-            <li>Led $150K ERP migration to SaaS PlotBox</li>
-            <li>Designed file infrastructure and communication workflows</li>
-            <li>Delivered organization-wide training</li>
-            <li>Administered Windows endpoints, GPO & MS 365</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-title">Office & Communications Coordinator</div>
-          <div class="job-meta">Woodland Cemetery — London, ON | Sep 2021–Mar 2024</div>
-          <ul>
-            <li>Sole IT technician for 30+ staff</li>
-            <li>Implemented ESXi hypervisor with Windows Server VMs</li>
-            <li>Configured intranet, DNS routing, AD/GPO, RMM tools</li>
-            <li>Built file vault & Linux-based MediaWiki Wiki</li>
-            <li>Administered AVAYA VoIP & network wiring</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-title">Junior Designer / IT Support Technician</div>
-          <div class="job-meta">MindsCombined Media Inc. — Markham, ON | 2005–2009</div>
-          <ul>
-            <li>Provided IT support alongside design duties</li>
-            <li>Managed user accounts & local networks</li>
-            <li>Provisioned servers for storage, backup & email</li>
-            <li>Administered email, DNS & domains</li>
-            <li>Delivered on-site & remote support</li>
-          </ul>
+    <section id="experience">
+      <div class="container">
+        <div class="card reveal">
+          <h2>Experience</h2>
+          <div class="timeline">
+            <div class="t-item">
+              <div class="t-role">Director of Communications</div>
+              <div class="t-org">Woodland Cemetery, Mausoleum, and Crematorium • 2024–2025 • London, ON</div>
+              <p>Project lead for PlotBox transition. Managed data migration, CAD mapping of 72 acres, and organization-wide training. Coordinated stakeholders, authored SOPs, and ensured BAO compliance across forms and contracts.</p>
+            </div>
+            <div class="t-item">
+              <div class="t-role">Office & Communications Coordinator</div>
+              <div class="t-org">Woodland Cemetery • 2021–2024</div>
+              <p>Managed Windows Server, GPO, AD, backups, and device lifecycle. Built internal tools, automated drawing workflows, and standardized branding and document systems.</p>
+            </div>
+            <div class="t-item">
+              <div class="t-role">Freelance IT & Web</div>
+              <div class="t-org">SMBs across Ontario • Ongoing</div>
+              <p>Consulting for provisioning, endpoint management, and lightweight web tooling. Comfortable with Intune, Autopilot, and RMM platforms for small teams.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Projects</h2>
-      <div class="card">
-        <div class="job">
-          <div class="job-title">PlotBox ERP Implementation – Internal Systems Lead</div>
-          <div class="job-meta">Woodland Cemetery | 2021–2025</div>
+    <section id="projects">
+      <div class="container grid cols-3">
+        <article class="card reveal">
+          <h3>Mortemora</h3>
+          <p>Python + FastAPI + PostgreSQL platform for cemetery operations. Focus on contracts, mapping, and compliance forms. Modular design with jsonb dynamic fields.</p>
+          <small class="muted">Stack: FastAPI, Alembic, JWT, PostGIS (planned)</small>
+        </article>
+        <article class="card reveal">
+          <h3>NestKinnect (prototype)</h3>
+          <p>Marketplace demo for independent healthcare providers. Front‑end only workflow to simulate bookings and credential checks.</p>
+          <small>Stack: HTML/CSS + light JS</small>
+        </article>
+        <article class="card reveal">
+          <h3>CAD Scripting</h3>
+          <p>Automation for cemetery plot drawings. Cut production time by ~40 percent across 62,000+ graves using custom scripts.</p>
+          <small>Stack: AutoLISP, Python helpers</small>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container grid cols-2">
+        <div class="card reveal">
+          <h2>Core</h2>
           <ul>
-            <li>Standardized 40+ forms for digital integration</li>
-            <li>Automated CAD mapping of 62,000+ plots via AutoLISP</li>
-            <li>Designed data controls & naming conventions</li>
-            <li>Created training & wiki documentation</li>
-            <li>Led UAT coordination & alignment</li>
+            <li>Windows Server 2019/2022, Linux (Debian/Ubuntu)</li>
+            <li>Active Directory, Group Policy, Intune</li>
+            <li>Networking basics, backup and recovery</li>
+            <li>FastAPI, PostgreSQL, SQL Server, JSON pipelines</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h2>Certs & Training</h2>
+          <ul>
+            <li>CompTIA A+ (2024)</li>
+            <li>Google Project Management (2024)</li>
+            <li>OACFP Cemetery Administration (2023)</li>
+            <li>JHSC Cert, First Aid CPR/AED (2024)</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Education</h2>
-      <div class="card">
-        <ul>
-          <li><strong>BFA, Visual Arts</strong> — York University, Toronto, ON | 2015</li>
-          <li><strong>Certificate in Film Studies</strong> — Toronto Metropolitan University | 2004–2006</li>
-        </ul>
+    <section id="contact">
+      <div class="container grid cols-2">
+        <div class="card reveal">
+          <h2>Contact</h2>
+          <p>Email: <a href="mailto:rgvildys@gmail.com">rgvildys@gmail.com</a></p>
+          <p>Phone: <a href="tel:+16478297504">+1 647 829 7504</a></p>
+          <p>Location: London, Ontario</p>
+        </div>
+        <form class="card reveal" onsubmit="event.preventDefault(); alert('Thanks, your message has been staged. Replace this with a form backend later.');">
+          <h3 style="margin-top:0">Quick message</h3>
+          <label> Your email<br><input required type="email" name="email" style="width:100%"></label>
+          <label> Message<br><textarea required name="message" rows="5" style="width:100%"></textarea></label>
+          <button class="btn primary" style="margin-top:10px">Send</button>
+          <p style="color:var(--muted); margin:8px 0 0; font-size:.9rem">This is a static demo. Wire to your preferred form service.</p>
+        </form>
       </div>
     </section>
+  </main>
 
-    <section class="section">
-      <h2>Professional Development</h2>
-      <div class="card">
-        <ul>
-          <li>Google: Intro to Project Management, 2024</li>
-          <li>JHSC Certification (Ontario MOL), 2022</li>
-          <li>First Aid with CPR/AED – St. John Ambulance, 2024</li>
-        </ul>
-      </div>
-    </section>
-  </div>
+  <footer>
+    <div class="container">
+      <small>© <span id="y"></span> Robert Gvildys</small>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Simple reveal on scroll (IntersectionObserver)
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  </script>
 </body>
 </html>

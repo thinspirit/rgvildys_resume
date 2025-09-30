@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Robert Gvildys — Portfolio</title>
   <meta name="description" content="Portfolio of Robert Gvildys. IT, systems, data, and product projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
   <style>
     /* ===== CSS RESET ===== */
     *, *::before, *::after { box-sizing: border-box; }
@@ -37,25 +41,45 @@
 
     /* ===== LAYOUT ===== */
     .container{ width: min(1100px, 92%); margin: 0 auto; }
-    header.site{
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: saturate(120%) blur(10px);
-      background: color-mix(in hsl, var(--bg) 85%, transparent);
-      border-bottom: 1px solid var(--stroke);
+    
+    
+    header.site {
+    position: fixed;  /* Change from sticky to fixed */
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+    -webkit-backdrop-filter: saturate(120%) blur(10px);
+    backdrop-filter: saturate(120%) blur(10px);
+    background: var(--bg);
+    border-bottom: 1px solid var(--stroke);
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
     }
+
+    /* Add this to create space below header */
+    main {
+    padding-top: 60px; /* Adjust this value based on your header height */
+    position: relative;
+    }
+
+
+
     .site .bar{ display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
     .logo{ font-weight: 800; letter-spacing: .3px; }
     nav a{ color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 10px; }
     nav a:hover, nav a:focus{ color: var(--text); background: var(--card); }
 
-    main{ scroll-snap-type: y proximity; }
-    section{ scroll-snap-align: start; position: relative; padding: 96px 0; }
+    section {
+      position: relative;
+      padding: 48px 0; /* Reduced from 96px to 64px */
+    }
 
     /* ===== BACKGROUND ANIMATION (GPU friendly) ===== */
     .bg{
       position: fixed; inset: -40vmax; z-index: -1; filter: blur(60px) saturate(120%);
       background: conic-gradient(from 0deg at 50% 50%, var(--brand), transparent 18%, var(--accent), transparent 36%, var(--brand), transparent 54%, var(--accent), transparent 72%, var(--brand), transparent 90%, var(--accent));
-      animation: spin 120s linear infinite;
+      animation: spin 360s linear infinite;
       opacity: .35; pointer-events: none;
     }
     @keyframes spin { to { transform: rotate(1turn) } }
@@ -121,6 +145,25 @@
       .avatar{ animation: none; }
       .reveal{ transition: none; }
     }
+    a {
+  color: var(--text);
+  text-decoration: none;
+  }
+
+  a:hover,
+  a:focus {
+  color: var(--text);
+  text-decoration: underline;
+  }
+  .orb-svg { width: 100%; height: 100%; display: block; border-radius: 50%; }
+  .orb-text { font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif; }
+  .avatar .orb-svg { transition: transform 18s linear; }
+  .avatar:hover .orb-svg { transform: rotate(360deg); } /* optional hover */
+  @media (prefers-reduced-motion: reduce){
+    .avatar .orb-svg { transition: none; }
+    .avatar:hover .orb-svg { transform: none; }
+  }
+
   </style>
 </head>
 <body>
@@ -142,14 +185,14 @@
     <section id="hero" class="container">
       <div class="hero">
         <div>
-          <h1 class="reveal">Robert Gvildys · IT Technician</h1>
-          <p class="lead reveal">I design and implement reliable systems, migrate data at scale, and build practical tools that make teams faster. London, Ontario.</p>
+          <h1 class="reveal">Robert Gvildys <br> IT Technician</h1>
+          <p class="lead reveal">Dynamic IT Technician with 7 years of hands‑on experience managing IT systems and leading ERP migrations. Looking to contribute in a larger enterprise environment on a help desk team, focused on reliable operations and practical improvements.</p>
           <div class="tags reveal" style="margin:18px 0 24px">
-            <span class="tag">Windows & Linux Admin</span>
-            <span class="tag">FastAPI + PostgreSQL</span>
-            <span class="tag">Data migration</span>
-            <span class="tag">CAD automation</span>
-            <span class="tag">Compliance workflows</span>
+            <span class="tag">Help Desk & Endpoint</span>
+            <span class="tag">Windows Server & AD</span>
+            <span class="tag">M365 Admin</span>
+            <span class="tag">SharePoint/OneDrive</span>
+            <span class="tag">SQL & Python</span>
           </div>
           <div class="cta reveal">
             <a class="btn primary" href="#contact">Get in touch</a>
@@ -157,7 +200,99 @@
           </div>
         </div>
         <div class="reveal">
-          <div class="avatar" role="img" aria-label="Abstract portrait placeholder"></div>
+          <div class="avatar" role="img" aria-label="Tech core orb">
+            <svg class="orb-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <!-- Theme-aware fills -->
+                <radialGradient id="orbGrad" cx="35%" cy="30%" r="80%">
+                  <stop offset="0%" stop-color="var(--brand)" stop-opacity="0.95"/>
+                  <stop offset="55%" stop-color="var(--accent)" stop-opacity="0.65"/>
+                  <stop offset="100%" stop-color="var(--bg)" stop-opacity="0.2"/>
+                </radialGradient>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="var(--brand)" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.9"/>
+                </linearGradient>
+          
+                <!-- Soft glow -->
+                <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+          
+                <!-- Circular clip -->
+                <clipPath id="clip">
+                  <circle cx="256" cy="256" r="236"/>
+                </clipPath>
+          
+                <!-- Isometric dot grid -->
+                <pattern id="isoDots" width="14" height="14" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.12"/>
+                  <circle cx="9" cy="9" r="1" fill="currentColor" opacity="0.12"/>
+                </pattern>
+              </defs>
+          
+              <!-- Outer rim -->
+              <circle cx="256" cy="256" r="248" fill="none" stroke="var(--stroke)" stroke-width="2"/>
+          
+              <g clip-path="url(#clip)">
+                <!-- Core gradient and grid -->
+                <rect width="512" height="512" fill="url(#orbGrad)"/>
+                <rect width="512" height="512" fill="url(#isoDots)"/>
+          
+                <!-- Concentric geometry rings -->
+                <g opacity="0.45" stroke="url(#ringGrad)" fill="none" filter="url(#softGlow)">
+                  <circle cx="256" cy="256" r="180" stroke-width="1.5"/>
+                  <circle cx="256" cy="256" r="128" stroke-width="1.25"/>
+                  <circle cx="256" cy="256" r="90"  stroke-width="1"/>
+                </g>
+          
+                <!-- Hexagon nucleus -->
+                <g transform="translate(256 256)">
+                  <polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28"
+                           fill="none" stroke="var(--text)" stroke-opacity="0.85" stroke-width="2"/>
+                  <polygon points="0,-28 24,-14 24,14 0,28 -24,14 -24,-14"
+                           fill="var(--text)" opacity="0.08"/>
+                  <!-- Radial spokes -->
+                  <g stroke="var(--text)" stroke-opacity="0.55" stroke-linecap="round">
+                    <line x1="0" y1="-70" x2="0" y2="-28" stroke-width="2"/>
+                    <line x1="60" y1="0" x2="24" y2="0" stroke-width="2"/>
+                    <line x1="0" y1="70" x2="0" y2="28" stroke-width="2"/>
+                    <line x1="-60" y1="0" x2="-24" y2="0" stroke-width="2"/>
+                    <circle cx="0" cy="-70" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="60" cy="0" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="0" cy="70" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="-60" cy="0" r="3" fill="var(--text)" opacity="0.6"/>
+                  </g>
+                </g>
+          
+                <!-- Circuit traces -->
+                <g stroke="var(--text)" stroke-opacity="0.55" fill="none" stroke-linecap="round">
+                  <path d="M70 260 C140 170, 220 170, 300 230" stroke-width="2"/>
+                  <circle cx="300" cy="230" r="3" fill="var(--text)" opacity="0.6"/>
+                  <path d="M420 280 C360 330, 290 350, 210 320" stroke-width="2"/>
+                  <circle cx="210" cy="320" r="3" fill="var(--text)" opacity="0.6"/>
+                  <path d="M120 360 C180 300, 240 300, 320 310" stroke-width="1.8"/>
+                  <circle cx="120" cy="360" r="3" fill="var(--text)" opacity="0.5"/>
+                  <path d="M380 180 C330 210, 290 240, 250 260" stroke-width="1.8"/>
+                  <circle cx="380" cy="180" r="3" fill="var(--text)" opacity="0.5"/>
+                </g>
+          
+                <!-- Sine-wave signal across the core -->
+                <path d="M80 256
+                         C120 200, 160 312, 200 256
+                         S280 200, 320 256
+                         S400 312, 440 256"
+                      fill="none" stroke="var(--brand)" stroke-opacity="0.9" stroke-width="2"
+                      filter="url(#softGlow)"/>
+              </g>
+          
+              <!-- Inner colored rim -->
+              <circle cx="256" cy="256" r="236" fill="none" stroke="url(#ringGrad)" stroke-width="2" opacity="0.9"/>
+            </svg>
+          </div>
+          
+          
         </div>
       </div>
     </section>
@@ -165,84 +300,186 @@
     <section id="about">
       <div class="container grid cols-2">
         <div class="card reveal">
-          <h2>About</h2>
-          <p>Technical generalist with 8+ years across IT operations, systems design, and data projects. I led a full ERP migration from a legacy SQL system to PlotBox, built CAD scripting that cut drawing time by 40 percent, and rolled out compliant digital forms across a regulated organization.</p>
-          <p>Currently building Mortemora, a fast and lean cemetery management stack using Python and PostgreSQL.</p>
+          <h2>About Me</h2>
+          <p>I'm an IT Professional and Systems Implementation Specialist with over 20 years of experience across customer service, education, and technology. I specialize in aligning systems with business needs to deliver practical, scalable, and people-centered solutions.</p>
+    
+          <p>In my most recent role as Director of Communications at Woodland Cemetery, I served as project lead for a $152,000 ERP migration from Stone Orchard (SQL-based) to the modern cloud-based PlotBox platform. Over 10 months, I led requirements gathering, data migration, stakeholder alignment, user training, and post-launch optimization—transforming legacy processes across four departments into an integrated, user-friendly platform.</p>
+    
+          <p>From scripting AutoLISP CAD workflows to map 62,000+ graves, to fixing 4,200+ duplicate records, to producing BAO-compliant documentation, my work modernized internal systems while making life easier for staff and families alike.</p>
+    
+          <p>Whether I'm building IT infrastructure, developing training systems, or refining workflows for compliance, I thrive on solving real-world problems with precision, clarity, and a human-first mindset.</p>
         </div>
+    
         <div class="card reveal">
-          <h3 style="margin-top:0">Highlights</h3>
+          <h3 style="margin-top:0">Focus Areas</h3>
           <ul>
-            <li>ERP migration lead, $152K scope, 62K+ records cleaned</li>
-            <li>Designed internal wiki, GPO/AD structure, and IT processes</li>
-            <li>Data acceptance testing, training, and change enablement</li>
+            <li>Full-cycle ERP implementation and SaaS onboarding (PlotBox, SharePoint, M365)</li>
+            <li>IT operations, Windows Server infrastructure, endpoint lifecycle management</li>
+            <li>Process mapping, documentation, and regulatory compliance (BAO/FBCSA)</li>
+            <li>CAD automation (AutoLISP), mapping, and digital transformation of legacy systems</li>
+            <li>Data cleanup, validation, and system governance for complex SQL/Excel data</li>
+            <li>Internal training, user adoption support, and cross-department coordination</li>
+            <li>File system architecture, GPO/Active Directory design, and internal wiki systems</li>
           </ul>
         </div>
       </div>
     </section>
+    
 
     <section id="experience">
       <div class="container">
         <div class="card reveal">
           <h2>Experience</h2>
           <div class="timeline">
+    
             <div class="t-item">
               <div class="t-role">Director of Communications</div>
-              <div class="t-org">Woodland Cemetery, Mausoleum, and Crematorium • 2024–2025 • London, ON</div>
-              <p>Project lead for PlotBox transition. Managed data migration, CAD mapping of 72 acres, and organization-wide training. Coordinated stakeholders, authored SOPs, and ensured BAO compliance across forms and contracts.</p>
+              <div class="t-org">Woodland Cemetery, Mausoleum, and Crematorium • Jan 2024 – Apr 2025 • London, ON</div>
+              <ul>
+                <li>Project lead for Woodland’s $152,000 USD transition from legacy SQL-based Stone Orchard to PlotBox SaaS ERP, including $52,000 onboarding completed in 10 months.</li>
+                <li>Led Data Acceptance Testing, stakeholder coordination, and Process Alignment across departments; resolved 4,200+ duplicate records to improve operational accuracy.</li>
+                <li>Designed and implemented SharePoint/OneDrive file architecture and onboarding workflows to streamline document access across 4 departments.</li>
+                <li>Produced AutoLISP-powered CAD drawings for 72 acres of cemetery space (62,000+ graves), reducing manual drawing time by 40%.</li>
+                <li>Created all internal training resources, delivered in-person support, and ensured rapid user adoption post-ERP launch.</li>
+                <li>Produced BAO-compliant drawings and full documentation to secure approval of new columbarium within 1 month.</li>
+                <li>Designed new contracts and digitized forms for PlotBox integration, improving compliance and eliminating manual calculation errors.</li>
+                <li>Assisted with transition of cemetery trust accounts to a new financial services provider, ensuring data continuity and reconciliation.</li>
+                <li>Planned, designed, and implemented a new public website (launch pending), projected to increase inquiries by 20%+.</li>
+              </ul>
             </div>
+    
             <div class="t-item">
               <div class="t-role">Office & Communications Coordinator</div>
-              <div class="t-org">Woodland Cemetery • 2021–2024</div>
-              <p>Managed Windows Server, GPO, AD, backups, and device lifecycle. Built internal tools, automated drawing workflows, and standardized branding and document systems.</p>
+              <div class="t-org">Woodland Cemetery • Sep 2021 – Mar 2024 • London, ON</div>
+              <ul>
+                <li>Delivered day-to-day IT support and infrastructure improvements across 30+ endpoints; implemented RMM tools that reduced issue resolution time by 40%.</li>
+                <li>Led major server upgrade in 2022 using Lenovo commercial-grade hardware with ESXi virtualization (two Windows Server 2022 VMs).</li>
+                <li>Designed and deployed secure file vaults, mapped drives by role, and GPO/AD structures to improve access and reduce internal friction.</li>
+                <li>Digitized contract workflows, improving documentation accuracy and reducing staff time through template-driven form logic.</li>
+                <li>Customized and restructured FuneralTech to meet direct cremation workflows; improved customer service and decreased data entry time.</li>
+                <li>Built an internal wiki using MediaWiki on Linux to support staff training, SOPs, and cross-team knowledge retention.</li>
+                <li>Rewired and expanded office layout to accommodate 5 new workstations; installed phone endpoints, conduits, and patch panel changes.</li>
+                <li>Joint Health and Safety Committee Chair, helped align burial protocols and safety policies to reduce procedural errors and improve compliance.</li>
+              </ul>
             </div>
+    
             <div class="t-item">
-              <div class="t-role">Freelance IT & Web</div>
-              <div class="t-org">SMBs across Ontario • Ongoing</div>
-              <p>Consulting for provisioning, endpoint management, and lightweight web tooling. Comfortable with Intune, Autopilot, and RMM platforms for small teams.</p>
+              <div class="t-role">Junior Designer / IT Support Technician</div>
+              <div class="t-org">MindsCombined Media Inc. • Sep 2006 – Sep 2009 • Markham, ON</div>
+              <ul>
+                <li>Provisioned custom servers for client-side storage, web, and email infrastructure; managed networks and user accounts.</li>
+                <li>Delivered Windows-based support to 20–25 user environments, reducing recurring hardware/software issues by 25% through monitoring and preventative maintenance.</li>
+                <li>Handled DNS, registrar, and hosting panel configurations for client websites and email infrastructure.</li>
+                <li>Resolved 100+ quarterly tickets across on-site and remote sessions; supported peripheral installs, backup scripts, and system builds.</li>
+              </ul>
             </div>
+    
+            <div class="t-item">
+              <div class="t-role">Full Stack Web Developer (Freelance + MindsCombined)</div>
+              <div class="t-org">MindsCombined & 9th Day Media • 2004 – 2009 • Toronto, ON</div>
+              <ul>
+                <li>Built database-driven e-commerce websites using early PHP/MySQL stacks; integrated Flash/Video and custom admin panels.</li>
+                <li>Contributed to pitch decks and helped secure early client wins for startup media firms; also led event videography and post-production.</li>
+                <li>Designed interfaces, graphics, and logos for early Web 2.0 client projects.</li>
+              </ul>
+            </div>
+    
+            <div class="t-item">
+              <div class="t-role">President, Winters College Council</div>
+              <div class="t-org">York University • Jun 2011 – Jun 2012 • Toronto, ON</div>
+              <ul>
+                <li>Elected to lead a student union representing 3,000+ members with oversight of $500K in nonprofit revenue and on-campus business operations.</li>
+                <li>Revived defunct student paper (“Winters Free Press”) under new branding (“ARTichoke Magazine”).</li>
+                <li>Improved athletic participation rates and managed staff relationships at the student-run Absinthe Pub and Coffee Shop.</li>
+                <li>Led modernization efforts: updated all computers, established Eventbrite-based event systems, and launched social media presence.</li>
+              </ul>
+            </div>
+    
+            <div class="t-item">
+              <div class="t-role">Freelance Artist</div>
+              <div class="t-org">Toronto, ON • Sep 2009 – Jul 2021</div>
+              <ul>
+                <li>Produced sculpture and installation-based work in metal, wood, and found materials.</li>
+                <li>Built interactive, lighting-enabled works using media technology and embedded systems.</li>
+                <li>Photographic, video, and exhibition-based production across public and private installations.</li>
+              </ul>
+            </div>
+    
+            <div class="t-item">
+              <div class="t-role">Other Roles</div>
+              <div class="t-org">Cineplex, Bar Sybanne, Blockbuster • 2000 – 2020</div>
+              <ul>
+                <li>Bartender and shift lead at Bar Sybanne (2014–2020): managed team operations and introduced successful themed events.</li>
+                <li>Guest services and projectionist at Cineplex (2000s): developed early customer service and tech experience.</li>
+                <li>Built foundational people skills across high-volume entertainment and retail roles.</li>
+              </ul>
+            </div>
+    
           </div>
         </div>
       </div>
     </section>
+    
 
     <section id="projects">
       <div class="container grid cols-3">
         <article class="card reveal">
-          <h3>Mortemora</h3>
-          <p>Python + FastAPI + PostgreSQL platform for cemetery operations. Focus on contracts, mapping, and compliance forms. Modular design with jsonb dynamic fields.</p>
-          <small class="muted">Stack: FastAPI, Alembic, JWT, PostGIS (planned)</small>
+          <h3>PlotBox ERP Implementation — Internal Systems Lead</h3>
+          <ul>
+            <li>Standardized 40+ internal forms and regulatory documents for digital use in PlotBox.</li>
+            <li>Scripted AutoLISP CAD workflows to map 62,000+ grave plots, reducing manual drawing time by ~40%.</li>
+            <li>Designed data input controls, naming conventions, and process rules to improve accuracy.</li>
+            <li>Built training resources, documentation, and wiki content for onboarding and long‑term adoption.</li>
+            <li>Led internal validation, UAT coordination, and cross‑department process alignment.</li>
+          </ul>
         </article>
         <article class="card reveal">
-          <h3>NestKinnect (prototype)</h3>
-          <p>Marketplace demo for independent healthcare providers. Front‑end only workflow to simulate bookings and credential checks.</p>
-          <small>Stack: HTML/CSS + light JS</small>
+          <h3>Knowledge Systems</h3>
+          <ul>
+            <li>Designed a centralized digital knowledge system using MediaWiki on a self-hosted Linux server to serve as the organization’s internal wiki and SOP library.</li>
+            <li>Built a structured file vault and documentation access layer using SharePoint, OneDrive, and mapped drives tailored to departmental roles.</li>
+            <li>Created onboarding documentation, process guides, and training walkthroughs for new hires and seasonal workers, improving onboarding time and consistency.</li>
+            <li>Developed user-friendly templates for internal policies, burial/cremation procedures, and vendor communications aligned with BAO and internal compliance needs.</li>
+            <li>Integrated the knowledge system with internal file infrastructure and backup systems to ensure long-term data retention and resiliency.</li>
+            <li>Streamlined discovery of forms and resources via internal-only URL routing and smart folder naming conventions, reducing information retrieval time by 35%.</li>
+          </ul>
         </article>
+        
         <article class="card reveal">
-          <h3>CAD Scripting</h3>
-          <p>Automation for cemetery plot drawings. Cut production time by ~40 percent across 62,000+ graves using custom scripts.</p>
-          <small>Stack: AutoLISP, Python helpers</small>
+          <h3>Endpoint & Network</h3>
+          <ul>
+            <li>Led the 2022 upgrade of all server infrastructure using Lenovo commercial-grade hardware, deploying VMware ESXi and Windows Server 2022 virtual machines for file services and future scalability.</li>
+            <li>Implemented full lifecycle endpoint management using RMM tools (e.g. Datto, Kaseya) and standardized workstation builds through Windows imaging and scripted post-deployment setup.</li>
+            <li>Deployed structured patch panels, conduit wiring, and PoE endpoints to extend and optimize office layouts during renovation and expansion.</li>
+            <li>Authored and enforced Group Policy Objects (GPOs) to manage device policies, mapped drives, network printers, and account restrictions across departments.</li>
+            <li>Maintained over 45 endpoints and network devices including laptops, printers, modems, switches, and VoIP phones, ensuring stable operation and uptime for all staff.</li>
+            <li>Introduced a rolling upgrade cycle and preventive maintenance schedule that reduced unplanned downtime by 30% and improved average workstation reliability.</li>
+            <li>Performed network segmentation and DNS routing for internal-only systems like MediaWiki, PlotBox admin, and secure file repositories.</li>
+          </ul>
         </article>
+        
       </div>
     </section>
 
     <section id="skills">
       <div class="container grid cols-2">
         <div class="card reveal">
-          <h2>Core</h2>
+          <h2>Skills</h2>
           <ul>
-            <li>Windows Server 2019/2022, Linux (Debian/Ubuntu)</li>
-            <li>Active Directory, Group Policy, Intune</li>
-            <li>Networking basics, backup and recovery</li>
-            <li>FastAPI, PostgreSQL, SQL Server, JSON pipelines</li>
+            <li>Windows 7/8/10/11; Windows Server 2016/2019/2022; macOS; iOS; Linux</li>
+            <li>Active Directory, Group Policy Objects (GPO), Remote Desktop, RMM (Kaseya, Datto), imaging & deployment</li>
+            <li>PC assembly/repair, printer support, network troubleshooting, basic switch/router config, patch panels</li>
+            <li>Microsoft 365 Admin, SharePoint, OneDrive, Exchange Admin Center; Teams, Zoom; LibreOffice; Adobe Acrobat; AutoCAD; Visio; Adobe Creative Suite; SaaS rollout; AI tools (ChatGPT, Gemini, Cursor)</li>
+            <li>Batch scripting, PowerShell (basic), Python (intermediate), Visual Basic, Windows Task Scheduler, SQL (intermediate)</li>
           </ul>
         </div>
         <div class="card reveal">
-          <h2>Certs & Training</h2>
+          <h2>Certifications & Awards</h2>
           <ul>
-            <li>CompTIA A+ (2024)</li>
-            <li>Google Project Management (2024)</li>
-            <li>OACFP Cemetery Administration (2023)</li>
-            <li>JHSC Cert, First Aid CPR/AED (2024)</li>
+            <li>CompTIA A+ (2025)</li>
+            <li>First Aid with CPR/AED — St. John Ambulance (2024)</li>
+            <li>JHSC Certification — Ontario MOL (2022)</li>
+            <li>Techstars Startup Weekend — 1st Place, TechAlliance of Southwestern Ontario (2025)</li>
           </ul>
         </div>
       </div>
@@ -253,16 +490,37 @@
         <div class="card reveal">
           <h2>Contact</h2>
           <p>Email: <a href="mailto:rgvildys@gmail.com">rgvildys@gmail.com</a></p>
-          <p>Phone: <a href="tel:+16478297504">+1 647 829 7504</a></p>
+          <p>Phone: <span id="phone"></span></p>
           <p>Location: London, Ontario</p>
         </div>
-        <form class="card reveal" onsubmit="event.preventDefault(); alert('Thanks, your message has been staged. Replace this with a form backend later.');">
+        <form class="card reveal" action="https://formspree.io/f/mzzjrwwn" method="POST">
           <h3 style="margin-top:0">Quick message</h3>
-          <label> Your email<br><input required type="email" name="email" style="width:100%"></label>
-          <label> Message<br><textarea required name="message" rows="5" style="width:100%"></textarea></label>
-          <button class="btn primary" style="margin-top:10px">Send</button>
-          <p style="color:var(--muted); margin:8px 0 0; font-size:.9rem">This is a static demo. Wire to your preferred form service.</p>
+          <label> Your email<br>
+            <input required type="email" name="email" style="width:100%">
+          </label>
+          <label> Message<br>
+            <textarea required name="message" rows="5" style="width:100%"></textarea>
+          </label>
+          <button type="submit" class="btn primary" style="margin-top:10px">Send</button>
+          <p style="color:var(--muted); margin:8px 0 0; font-size:.9rem">Messages are securely delivered via Formspree</p>
         </form>
+      </div>
+    </section>
+  <section id="education">
+      <div class="container grid cols-2">
+        <div class="card reveal">
+          <h2>Education</h2>
+          <ul>
+            <li>BFA, Visual Arts (Spec. Digital Media) — York University, Toronto, ON (2021)</li>
+            <li>Certificate in Film Studies — Toronto Metropolitan University (Ryerson), 2004–2006</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h2>Awards & Highlights</h2>
+          <ul>
+            <li>Built a prototype site and pitch deck within 12 hours; pitched with team to win 1st place at Techstars Weekend (2025).</li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
@@ -282,6 +540,18 @@
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -10% 0px' });
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // Add this to your existing script section
+    window.addEventListener('load', function() {
+        const area = '647';
+        const prefix = '829';
+        const line = '7504';
+        const phone = document.getElementById('phone');
+        const phoneLink = document.createElement('a');
+        phoneLink.href = `tel:+1${area}${prefix}${line}`;
+        phoneLink.textContent = `+1 ${area} ${prefix} ${line}`;
+        phone.appendChild(phoneLink);
+    });
   </script>
 </body>
 </html>
